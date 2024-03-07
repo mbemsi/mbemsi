@@ -1,0 +1,1059 @@
+DevOps/Cloud/SRE/DevSecOps/Application Engineering
+Platform/Kubernetes/Infrastructure Engineering
+============================================
+
+Automating IT processes/workloads with GUI/CLI and Scripting
+=============================================================
+Automating IT:
+   processes
+   workloads 
+   jobs    
+   tasks  
+
+We need computer systems to carryout tasks:
+===========================================
+Computer/systems:
+  1. Bare Metal / HardWare components 
+      RAM - memory 
+      Cpu 
+      ROM - hard disk / volume / storage 
+      MOUSE
+      KEYBOARD
+      Screen
+  2. Software components 
+      operating system = OS [This is the heart a computer] : 
+        Windows OS [ 7/xp/8/9/10/11 ]
+        MacOS 
+        Solaris  
+        Linux  OS:
+          Radhat 6/7/8/9 / 
+          ubuntu  [16/18/20/22] / 
+          centos 6/7/8/9 / 
+          debain / amazon Linux / suse / etc.  
+      and
+      other softwares :
+         shell 
+         Sublime text
+         mobaXterm / gitbash / telegram /    
+         Microsoft word/Excell  
+
+Examples of workloads:
+  fileMGT / userMGT / packageMGT/ securityMGT / systemMGT / etc.
+
+Workload management on Computer systems [LINUX OS] :
+    GUI: = Graphical user interface  -- 5%
+    CLI: = command line interface    -- 
+            aws ec2 describe-instances  
+     Linux OS = Linux servers/systems
+      ls:   = list the content of a directory
+      touch test.txt
+
+    scripts: a shell-script is a collection of one or more commands in a file 
+             a script is a file containing commands  
+    write a simple script that welcomes Engineers to work?
+    welcome.sh
+    ==========
+     #!/bin/bash 
+     echo "Good morning"
+     whoami
+     echo "Welcome to Landmark Technologies" 
+     echo "Today is"
+     date 
+     run the script by:
+       ./scriptName
+       ./welcome.sh
+       ./script1.sh
+[oke@demo22 ~]$  ./welcome.sh
+-bash: ./welcome.sh: Permission denied
+[oke@demo22 ~]$ ll
+-rw-r--r--. 1 oke oke 107 May 18 19:42 welcome.sh
+ 644 Permissions  
+ The file/script need executable Permissions to run  
+    chmod 744 welcome.sh  
+    chmod  u+x scriptName 
+    chmod   +x scriptName  
+   [oke@demo22 ~]$ ll
+   -rwx-r--r--. 1 oke oke 107 May 18 19:42 welcome.sh
+Assign executable Permission:
+  chmod +x fileName   
+  chmod +x script1.sh
+  chmod 775 fileName 
+  chmod 700 fileName 
+
+    shell: A shell is an interpreter that interpretes commands to the OS. 
+
+shells command interpreters:
+  Boune Shell  (sh)
+  Boune Again Shell (bash)
+  csh / ksh / tsh / zsh  
+
+  echo $SHELL       =  List your current shell
+      /bin/bash
+  cat /etc/shells   = List all shells in your system
+     /bin/sh
+     /bin/bash
+     /usr/bin/sh
+     /usr/bin/bash
+     /bin/csh
+     /bin/tcsh
+     /usr/bin/csh
+    /usr/bin/tcsh
+
+  sudo yum install ksh zsh -y 
+  [oke@demo22 ~]$ cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+/bin/csh
+/bin/tcsh
+/usr/bin/csh
+/usr/bin/tcsh
+/usr/bin/zsh
+/bin/zsh
+/bin/ksh
+/bin/rksh
+/usr/bin/ksh
+/usr/bin/rksh
+
+  bash -c ls  or ls   
+  cat /home/oke/welcome.sh  [accessing the file using the absolute path]
+  cat welcome.sh  [accessing the file using the relative path]
+
+Bash shell Scripting:
+
+Naming convention:
+Naming conventions best practices:
+bash Shell-scripts   = script.sh or hello.sc  
+Shell-scripts has '.sc' or '.sh' extensions 
+    scriptname.sh  or 
+    scriptName.sc or 
+    *.sh or 
+    *.sc 
+  deploy.sh  = Shell-script [*.sh]
+  test.txt   = text file    [*.txt]
+  app.sc     = Shell-script [*.sc]
+  app.java   = java code    [*.java] 
+  monitor.py = python code/script [*.py] 
+  app.yaml   = playbook or manifest file [*.yml] 
+  main.tf    = terraform scripts/codes [*.tf]
+==============================================
+script1.sh  
+#!/bin/bash
+echo "Good morning Millionaire,"
+whoami
+echo Welcome to Landmark Technologies Millionaire Deployment
+echo Today is,
+date
+
+[oke@demo22 ~]$ sh /home/oke/script1.sh
+Good morning Millionaire,
+oke
+Welcome to Landmark Technologies Millionaire Deployment
+Today is,
+Thu May 18 20:13:41 EDT 2023
+[oke@demo22 ~]$
+[oke@demo22 ~]$ /home/oke/script1.sh
+bash: /home/oke/script1.sh: Permission denied
+[oke@demo22 ~]$
+[oke@demo22 ~]$ sh script1.sh
+Good morning Millionaire,
+oke
+Welcome to Landmark Technologies Millionaire Deployment
+Today is,
+Thu May 18 20:14:15 EDT 2023
+
+Scripting or automation langauges :
+  1. Bash Shell Scripting
+  2. Python 
+  3. Groovy  (Jenkins)
+  3. Ruby
+  4. Yaml  
+      (k8s, Ansible, CloudFormation)
+  5. JSon / java
+  6. HCL - Terraform  
+  7. XML = 
+  8. html 
+  9. go/golang 
+  10. powershell 
+
+Tasks - ticket0014:
+  TK-deploy-00123 
+write a shell simple script to deploy applications 
+1. Create a deployment directory  
+2. create a deployment; app.java file  
+3. assign read Permission to app.java file
+4. changing ownership of app.java file 
+9. copy the file to the app directory  
+
+How to make your codes/scripts:
+  easily readable/understandable 
+  1. by adding notes/comments/explanations 
+
+comment.sh  
+#!/bin/bash
+echo 'single line comment starts'
+# This script welcome Engineers to Landmark.
+# comented lines starts with #
+# Only run this script on Linux systems
+# Author: Prof. Simon
+# Copyright C Landmark Technologies
+# whoami
+date
+echo welcome to Landmark Technologies millionaire deployment
+echo 'single line comment ends'
+
+mlc.sh 
+echo "Multi-line comment starts"
+<<boy
+This script welcome Engineers to Landmark.
+Only run this script on Linux systems
+Author: Prof. Simon
+Copyright C Landmark Technologies
+pwd
+boy
+echo "Multi-line comment ends"
+date
+whoami
+
+[oke@demo22 ~]$ sh mlc.sh
+Multi-line comment starts
+Multi-line comment ends
+Thu May 18 20:40:35 EDT 2023
+oke
+
+
+<<rich
+This script welcome Engineers to Landmark.
+Only run this script on Linux systems
+Author: Prof. Simon
+Copyright C Landmark Technologies
+pwd
+rich
+
+Who are the comments meant for?
+  1. It make your script/code to be understood by you and others over time. 
+  2. It make your script/code easily reusable in the future
+  3. Facilitate/ease troubleshooting and debugging
+  4. comments are Good for teams: Team of 14 
+        6. developers writing codes/scripts 
+        1. Scrum master 
+        3. DevOps Engineers 
+        1. DevOps Security Engineer 
+
+Making your script portable.  
+1. Hard coding 
+2. soft coding   
+
+using variables in scripting:
+============================
+name=SimonLegah
+cpy=LandmarkTechnology
+how to call variables in bash shell scripting:
+  $variableName 
+  ${variableName} 
+
+var1.sh  
+[oke@demo22 ~]$ cat var1.sh
+#!/bin/bash
+name=SimonLegah
+cpy=LandmarkTechnology
+echo "Good morning $name"
+echo "Good morning ${name}"
+echo Welcome to $cpy
+echo Good morning ${name}, welcome to $cpy.
+
+variables:
+variables are defined by the either the user or the system 
+we can refer/call a variable with $variable 
+
+User defined variables   = UDV  : 
+ Are defined/created by some admins  
+udv.sh  
+ name=SimonLegah
+ cpy=LandmarkTechnology  
+ city=Toronto
+ country=Canada  
+ echo $name works for $cpy located in $city, $country    
+
+system defined variables   = SDV  : 
+ SDV Are variables that comes with the OS  
+ Such variables are in uppercase  
+  SHELL=bin/bash
+  echo $SHELL  = /bin/bash
+  env = List all system defined variables  
+
+sdv.sh 
+city=Toronto
+APP=TeslaApplication
+echo $USER works for LandmarkTechnology, $city
+echo $PWD
+echo $SHELL
+echo This $APP is the best version in the market.
+# udv are or should be written in lowercase. Highly recomended
+# sdv  are written in upper case
+
+[oke@demo22 ~]$ env
+SHELL=/bin/bash
+HISTCONTROL=ignoredups
+SYSTEMD_COLORS=false
+HISTSIZE=1000
+HOSTNAME=demo22
+PWD=/home/oke
+LOGNAME=oke
+HOME=/home/oke
+
+start writing your script with shebang [#!] /bin/sh]
+
+MTN =    
+
+
+   export class=DevOpsMasterClass
+
+system defined variables:
+  echo sdv starts  
+   echo $HISTSIZE  
+   echo $USER 
+   echo $HOME  
+   echo $PATH  
+   echo $LOGNAME
+   echo $SHELL 
+echo sdv ends   
+
+[oke@demo22 ~]$  echo $HISTSIZE
+                 1000
+export HISTSIZE=2000
+=============================
+
+dynamic script  :
+  1. echo $name Welcome to $cpy  
+
+static script:
+  1. echo Oke Welcome to MTN    
+
+$name Welcome to Landmark Technology
+
+User defined variables:
+var1.sh 
+   name=SimonLegah 
+   cpy=LandmarkTechnology
+   echo $name Welcome to $cpy  
+
+write a script to authenticate bank users:
+===========================================
+[oke@demo22 ~]$ cat read1.sh
+echo 'Please enter your name'
+read name
+echo "$name, welcome to TD Bank"
+echo 'please enter your card'
+echo 'please enter your pin'
+read pin
+echo "$pin is the correct pin, $name, how may we help you today?"
+
+======================================
+TICKET0045: Write a scipt to dynamically create users. 
+   userMGT commands: adduser / usermod / userdel /  groupadd / groupdel 
+      sudo adduser/userdel/usermod/ groupadd / groupdel 
+userCreate.sh  
+[oke@demo22 ~]$ cat createuser.sh
+#!/bin/bash
+# This script requires root/sudo access
+echo "Please enter the name of the newUser"
+read newuser
+echo "Now ready to create $newuser account "
+sudo adduser  $newuser
+echo "$newuser account is created successfully"
+grep $newuser /etc/passwd # to verify
+[oke@demo22 ~]$
+
+IQ: Explain your experience in shell scripting  ?
+1. using bash shell scripts for userMGT. 100% [New Graduate]    
+2. In my environment/company/Landmark i use scripting for userMGT for over 5 years. 
+
+userMGT.sh  :   
+echo "creating a newuser account" 
+echo "enter the new username's name"
+read name  
+sudo adduser $name 
+sudo usermod -aG manager $name   
+id $name 
+
+bank.sh   
+-------
+echo "Please enter your name"
+read name
+echo "$name, welcome to TB Bank"
+echo "Please enter your pin"
+read -s pin  # -s pass a secret variable
+echo "$name you entered an invalid pin"
+[obi@sc ~]$
+
+Security is inherent in our environment.  
+
+Command Line Arguments = CLAs  
+===============================
+TICKET0047: write a script to backup databases in our environment.  
+touch db_backup.sh
+ echo "echo database backup initiated" > db_backup.sh
+ echo "echo database backup completed" >> db_backup.sh
+
+-# sh script.sh  arg1  arg2  arg3 ...  agr10
+-#     $o         $1    $2    $3       $10
+
+cla.sh   
+#echo please pass 3 arguments with your script
+echo "The 1st argument is $1"
+echo "The 2nd argument is $2"
+echo "The 10th argument is ${10}"
+echo The number argument is $#
+echo The list of  argument are $@
+echo The list of  argument are $*
+Date
+echo The status of your last run command is $?
+mkdir backup
+cp *  backup/
+echo The process id is  $$
+
+
+[oke@demo22 ~]$ echo $?
+127
+[oke@demo22 ~]$ cat ss
+cat: ss: No such file or directory
+[oke@demo22 ~]$ echo $?
+1
+
+IQ: What is the significance of $? in scripting.
+  It gives the status of your last run command.
+  The value can be = 0 [Its okay]   or 
+  The value can be = 1-127 [Its not okay]   
+
+[oke@demo22 ~]$ ls
+app      cla.sh         db_backup.sh  mlc.sh      sdv1.sh  usermgt.sh
+backup   comment.sh     deploy.sh     read1.sh    sdv2.sh  var1.sh
+bank.sh  createuser.sh  deployment    script1.sh  udv1.sh  welcome.sh
+[oke@demo22 ~]$ echo $? = 0
+[oke@demo22 ~]$ LS
+-bash: LS: command not found
+[oke@demo22 ~]$ echo $? = 127
+[oke@demo22 ~]$ cat ss
+cat: ss: No such file or directory
+[oke@demo22 ~]$ echo $? = 1
+
+
+command Line arguments:
+    The 1st argument is  = $1"
+    The 2nd argument is  = $2"
+    The 3rd argument is  = $3"
+    The 6th argument is  = $6"
+    The scriptName  is   = $0"
+    The 10th argument is = ${10}"
+    The number argument is $#
+    The list of argument are $@
+    The list of argument are $*
+    The status of the last run command is = $?  
+    The process id is = $$  
+
+CLA = $? displays the status of your   
+  last run command with 2 possible values 
+     $? = 0 = command ran successfully
+     $? = 1-127 = something is wrong        
+
+  1-127 are error codes :
+      1   = 
+      2   = 
+      3   = 
+      127 = 
+
+An argument, also called command line argument, 
+can be defined as input given to a command line 
+to process that input with the help of given command. 
+Argument can be in the form of a file or directory. 
+Arguments are entered in the terminal or console after entering command.
+
+sudo service sshd 
+
+cat deploy.sc     
+if [ $?==0 ] 
+then
+echo "We succeeded" 
+else  
+echo "We failed, please troubleshoot" 
+fi  
+
+cat deploy.sc     
+if [ $#==3 ] 
+then
+echo "We succeeded" 
+else  
+echo "Please pass 3 arguments with your script" 
+fi 
+
+Inequality signs :
+=================
+-eq  or  == represent equals to 
+           (( $? == 0 )) [ X -eq = y]
+-ne  or  != represent not equals to 
+-gt  or  >  represent greater than
+-lt  or  <  represent less than 
+-ge  or >= greater than or equals to
+-le  0r <= less than  or equals to 
+
+if [ votes -gt 50% ]
+then 
+echo he won the elections 
+fi  
+
+conditions :
+if statement  
+Syntax:
+if (( conditions ))
+then 
+commands 
+else  
+commands  
+fi
+
+if1.sh  
+
+echo "welcome to Landmark DevOpsMasterClass" 
+echo "How much are you willing to pay"
+read price
+if [ $price -ge 4000 ]
+then 
+echo "your are admitted"  
+else  
+echo "sorry you can't be admitted today "
+fi  
+
+if2.sh   
+echo "Please enter for pin"
+read pin  
+if (( $pin == 4100 ))
+then 
+echo "You have entered the correct pin"
+echo "Thank you for banking with TD Bank"
+else  
+echo "sorry you entered the wrong pin"
+echo "your account is blocked for your protection"
+echo "Please visit a branch for further assistance"
+fi  
+
+
+---
+Debugging issues:
+vi debug.sh   
+==========
+whoami  
+Date  
+Pwd 
+echo $?   
+whatis ls  
+echo $?  
+echo $$ 
+
+IQ: How do you troubleshoot issues in scripting??
+    run the script in debugging mode  
+    sh -x scriptName   
+
+Debugging problems in scripting  
+===============================
+  sh -x scriptName  
+
+Input output redirection  
+=============================
+Standard output  
+standard error  
+Redirect Standard output --   :   
+  sh scriptName > log  
+  sh debug.sh > log or sh debug.sh 1> log  
+
+Redirect Standard errors --   : 
+  sh scriptName 2>fileName   
+  sh debug.sh 2>error.log  
+
+Redirect Standard output & errors --   :
+  sh scriptName  > fileName  2>&1 
+  sh debug.sh  > all.log  2>&1 
+
+tail -5 /etc/passwd > users.txt
+
+
+tail -1 /etc/passwd > new-users.txt   = This will replaced existing content  
+tail -1 /etc/passwd >> new-users.txt  = This will add to existing content  
+
+USING Scripts for package management:
+====================================
+We can install, remove, updates and 
+upgrade packages in our servers.
+examples of packages:
+  nano, tree, vim, httpd, 
+  java, maven, tomcat, jenkins,
+  kubernetes, kubelet, docker
+  terraform, etc.  
+We can download and install packages 
+using package managers like:
+   yum/dnf          -- centos, redhat
+   apt/apt-get      -- ubuntu, debain
+   chocolatey/choco -- windows OS  
+   brew             --  mac  
+   helm,  -- kubernetes 
+   pip,   -- python 
+   rpm 
+
+centos/redhat/amazon linux/:
+  yum install nano 
+
+TICKET0017 - Write a simple script to install and start apache
+========
+-#!/bin/bash
+[root@demo33 ec2-user]# cat package.sh
+#!/bin/bash
+##This script will install and start the apache http webServer
+ sudo yum install httpd -y
+ sudo systemctl start httpd
+ sudo systemctl enable httpd
+ systemctl status httpd
+ sudo echo " JESUS IS LORD " > /var/www/html/index.html
+ sudo echo " I am rich " >> /var/www/html/index.html
+
+  fileMGT_index.html
+ ------------------
+ [oke@demo22 ~]$ cat index.hmtl
+
+<h1> Welcome to LandmarkTech </h1>
+<h2>The Pride of Africa</h2>
+
+sudo vi  /var/www/html/index.html
+<h1> Welcome to LandmarkTech </h1>
+<h2>The Pride of Africa</h2>
+<h2>The Pride of Africa</h2>
+<h3>The Pride of Africa</h3>
+<h4>The Pride of Africa</h4>
+
+package2.sh  
+==========
+yum install ksh zsh tsh -y  
+yum install vim git -y   
+
+=========================================
+control commands = conditions:
+==============================
+if statements:
+Syntax:  
+  if [ conditions ] 
+  then 
+  commands  
+  else  
+  commands
+  fi 
+
+Syntax:  
+  if (( conditions ))  
+  then 
+  commands  
+  else  
+  commands
+  fi 
+if1.sh  
+echo " Please enter your prediction "
+read p
+if [ $p == 4008 ]
+then
+echo "Congratulations"
+echo "you are the winner"
+else
+echo "Your prediction is wrong,"
+echo "Please, try again"
+fi
+
+if2.sh 
+echo 'ENTER YOUR GPA'
+read gpa
+if [ $gpa -gt 4 ]
+then
+echo "Congratulations,"
+echo "You are a 1st class student"
+elif [ $gpa -ge 3 ]
+then 
+echo "Congratulations,"
+echo "You are a 2nd class student"
+elif [ $gpa -ge 2 ]
+then 
+echo "Congratulations,"
+echo "You are a 3rd class student"
+else
+echo "You can do better, please work harder"
+fi
+
+[ec2-user@demo33 ~]$ cat if5.sh
+echo "Please enter your pin"
+read p
+if [ $p == 5032 ]
+then
+echo "You enter a valid pin "
+echo "Welcome to TD Bank "
+elif [ $p == 5068 ]
+then
+echo "This  pin was changed 3weeks ago "
+echo "Please try again "
+else
+echo "You entered the wrong pin"
+echo "You have 2 more attempts"
+fi
+
+if6.sh 
+------
+if [ uid == 0 ]
+then
+echo read username
+read username
+echo "Creating $username user account"
+useradd $username
+else
+echo "sorry only the root can run this script"
+fi
+
+[ec2-user@demo33 ~]$ head -1 /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+[ec2-user@demo33 ~]$
+[ec2-user@demo33 ~]$ id root
+uid=0(root) gid=0(root) groups=0(root)
+
+
+
+if [ condition ]
+then 
+command1 
+command2
+elif [ condition ]
+then 
+command1 
+command2
+elif [ condition ]
+then 
+command1 
+command2
+else 
+command1 
+command2
+fi   
+
+Loops: When a condition can be satisfied multiple times.
+======
+for  loop  
+=========
+Loops: condition with multiple iterations 
+x < 100 
+x= [0, 1, 2, 3, ..., 99] 
+Syntax:
+for loop  
+for [ initiallation;conditions;inc/dec ]
+do  
+
+execute all command/script until the condition is 
+longer met/satisfied. 
+(And repeat all statement between do and done) 
+done 
+
+for loops:
+==========
+for (( initiation;conditions;inc/dec ))
+do 
+commands 
+commands 
+done
+
+fl.sh  
+for  (( a=1;a<=5;a++ )) 
+do  
+echo $a   
+done  
+
+Expected output:
+a=1  
+a=1 + 1 = 2 
+a=2 + 1 = 3 
+a=3 + 1 = 4  
+a=4 + 1 = 5 
+look breaks   
+a=5 + 1 = 6 
+
+Assignment:
+Write a shell script to print numbers from 100-90 
+using for-loop [100, 99, 98, ---, 90]
+
+while loop
+=========
+Syntax:
+initiallation 
+while [ condition ]
+do 
+commands/statements
+done
+
+yl.sh   
+echo "while loop starts"
+echo "performing load testing for tesla"
+l=10000
+while [ $l -le 90000 ]
+do
+echo "Carrying load of "
+echo $l
+l=`expr $l + 10000 `
+done
+echo "while loop ends"
+
+output:
+  performing load testing
+  Carrying load of
+  l = 10000
+  Carrying load of
+  l = 10000 + 10000 = 20000
+  Carrying load of
+  l = 20000 + 10000 = 30000
+  Carrying load of
+  l = 30000 + 10000 = 40000
+
+yl2.sh   
+echo "while loop starts"
+echo "performing load testing for tesla"
+l=10000
+while [ $l -ge 10000 ]
+do
+echo "Carrying load of "
+echo $l
+l=`expr $l + 10000 `
+done
+echo "while loop ends"
+
+use cases for loops:
+===================
+To run load test  
+To get range of values   
+====================
+
+Assignment:
+Write a shell script to print numbers from 1-9 
+using while-loop 
+----
+i=9  
+while [ $i -ge 1 ]   
+do  
+echo $i 
+i=`expr $i - 1 `  
+done   
+
+switch case:
+==========
+  systemctl start|status|restart|stop|enable|disable sshd 
+  yum install/remove/updates/upgrade
+tomcat:
+  catalina.sh | status | start | stop | restart | version
+  catalina.sh start tomcat 
+  catalina.sh stop  tomcat   
+  catalina.sh restart  tomcat   
+sonarQube:
+  sonar.sh  | status | restart | stop | start | version
+
+ sh sonar.sh start 
+ sh catalina.sh stop tomcat
+     $0         $1    $2  
+
+Syntax for switch case:
+case $1 in  
+    option1)
+      Commands;;
+    option2)
+      Commands;;
+    option3)
+      Commands;;
+    *)
+      Commands;;
+esac 
+
+case $1 in  
+    start)
+      echo "sonarQube server starting"
+      echo "sonarQube server started" ;;
+    stop)
+      echo "sonarQube server stopping"
+      echo "sonarQube server stopped" ;; 
+    restart)
+      echo "sonarQube server restarting"
+      echo "sonarQube server restarted" ;;
+    status)
+      echo "sonarQube server running"
+      echo "The process ID is $$ " ;;
+    *)
+      echo "you entered an invalid option"
+      echo "Please enter start, stop, status or restart option" ;;
+esac 
+
+functions :
+  Functions:   
+ A function is a piece of code that perfoms
+ a specific task and avoids code repetition/duplication.
+
+usermgt(){
+   echo "Enter the username of the new user"
+   read name
+   sudo adduser $name
+   grep $name /etc/passwd  
+   id $name   
+}
+filemgt(){
+  if [ -e /etc/passwd ]
+  then
+   echo "File management is easy with scripting"
+   echo "The file exist. Please proceed ..."
+   grep simon /etc/passwd
+   touch test.java /tmp  
+  else
+    echo "It doesn't exist"
+  fi
+}
+packagemgt(){
+  sudo yum update -y
+  sudo yum install tree nano vim unzip -y
+}
+db_backup(){
+  mkdir /tmp/backup  
+  cp -r * /tmp/backup/
+}
+monitoring(){
+  df -h
+  free -m
+  top
+}  
+usermgt  
+filemgt  
+db_backup
+
+
+Ticker00147_create a new user in our environment:
+============================================= 
+1. import/call/invoke the usermgt function
+
+IQ: Examples of autamted tasks:
+  Explain your experience in bash shell scripting??
+AMSWER:
+ In my environment I have written, Maintained/modified
+  shell scripts to:
+    monitor_servers.sh  
+    dataBase_backup.sh 
+    deploy_app.sh 
+    access_account.sh  
+    user_management.sh  
+    file_management.sh  
+
+scp command:
+  It is use to transfer files from one server to another and vice-versa
+  It is good for data migration, application deployment, etc. 
+  scp tranfer files and directory securely using the ssh protocol 
+
+TICKET0019 -- 
+ Tranfer files from your Windows system to your Linux server
+
+  scp fileName username@ip:/path/to/dir  
+  scp app.yml simon@52.10.100.198:/home/simon/
+
+TICKET0020 -- 
+ Tranfer directory from your Windows system to your Linux server
+ scp -r app simon@52.10.100.198:/home/simon/
+ scp -r -i key.pem app simon@52.10.100.198:/home/simon/ 
+
+Password for authentication:
+   scp filename ubuntu@52.201.217.3 
+   scp filename username@ipaddress   
+
+   scp -r direname ubuntu@52.201.217.3 
+   scp -r direname username@ipaddress 
+
+ssh-key for authentication:
+   scp -i key.pem app.war  ubuntu@52.201.217.3 
+   scp -i key.pem filename username@ipaddress   
+
+   scp -i key.pem -r direname ubuntu@52.201.217.3 
+   scp -i key.pem -r direname username@ipaddress 
+
+Path to files and directories: 
+=============================
+  Relative path: start From pwd    
+  Absolute path: start From / (root)
+
+
+[simon@demo33 ~]$ tail -3 hello.yml
+    image: mylandmarktech/hello
+    ports:
+    - containerPort: 80
+[simon@demo33 ~]$
+[simon@demo33 ~]$ tail -3 /home/simon/hello.yml
+    image: mylandmarktech/hello
+    ports:
+    - containerPort: 80
+
+cronJobs:
+==========
+Scheduling Tasks/Workloads for automation.
+Assignment/Ticket:
+  1. Write a script that monitors servers every minutes 
+     This script should alert management of anomalies 
+  2. Write a script that backup dbServers every midnight
+
+Execution:
+1. We shall use cronJobs and create cron tables to achieve this 
+   Automation and Schedule the tasks to run as expected. 
+
+   cron table   = contains scheduled tasks   
+   crontab -e   = To edit the cron table 
+   crontab -l   = List the cron table
+
+sudo yum install cronie
+- yum -y update
+- sudo yum install vixie-cron
+
+Create a ticket to monitor_servers every minute
+==============================================
+/home/ec2-user/monitor_server.sh > /tmp/log  
+* * * * * /home/ec2-user/monitor_server.sh > /dev/null 2>&1
+* * * * * /home/ec2-user/monitor_server.sh > /tmp/log 2>&1
+
+
+#!/bin/bash
+date
+free -m
+whoami
+Pwd 
+
+https://crontab-generator.org/
+
+crontab generator online: 
+  https://crontab-generator.org/
+
+* * * * * /home/simon/monitor_servers.sh >/dev/null 2>&1
+* * * * * /home/simon/monitor_servers.sh >/tmp/log 2>&1
+
+* * * * * /home/simon/monitor_servers.sh >>/tmp/log 2>&1
+
+*  = every minute 
+*  = every hour
+*  = every day 
+*  = every month 
+*  = every week 
+
+Team:
+project 1
+========
+1. AWS Accounts are created for all team members 
+2. Create a redhat8 linux server 
+3. Connect to the redhat8 server using mobaXterm/terminal ssh-cleint 
+4. Program or configure the server for password authentication   
+5. Create a user call dominion and assign a password [admin123] 
+6. Connect to your server using dominion's user
+7. Run commands in the server as dominion's user 
+    
+project 2
+========    
+7. Connect to your server using dominion user's details  
+8. Run your scripts as dominion user
+
